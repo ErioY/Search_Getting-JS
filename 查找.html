@@ -1,0 +1,46 @@
+<!--
+ * @Autor: ErioY
+ * @Date: 2019-08-17 11:23:57
+ * @Email: 1973545559@qq.com
+ * @Github: https://github.com/ErioY
+ * @LastEditors: ErioY
+ * @LastEditTime: 2019-08-17 11:24:05
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+    // 获取URL中的search，通过传入对应的key，返回key对应的value，如：传入id，返回5
+    function getValue(search, key) {
+        // <1> 找出key第一次出现的位置
+        var start = search.indexOf(key);
+        if(start == -1) {
+            return;
+        } else {
+            // <2> 找出键值对，结束的位置
+            var end = search.indexOf("&", start);
+            if(end == -1) {
+                //这是最后一个键值对
+                end = search.length;
+            }
+        }
+        // <3> 将这个键值对提取出来
+        var str = search.substring(start, end);
+        // alert(str);
+        // <4> key = value 获取value
+        var arr = str.split("=");
+        return arr[1];
+    }
+    var search = "?id=5&search=ok";
+    alert(getValue(search, "search")); // 查找search，输出ok
+    alert(getValue(search, "id")); // 查找id，输出5
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
